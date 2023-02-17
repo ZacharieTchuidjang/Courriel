@@ -79,3 +79,27 @@ body{
     display: flex;
     
 }
+.recherche{
+    margin: 10px 0 0 10px;
+}
+.contact{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 7px;
+    
+}
+#liste_contact{
+    display: flex;
+}
+.titre_contact{
+    text-align: center;
+    border-top: solid 1px;
+    padding-top: 7px;
+}
+
+.container{
+    margin-top: 10px;
+    overflow: auto;
+    max-height: 550px;
+}
