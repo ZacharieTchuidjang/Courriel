@@ -8,8 +8,9 @@
     <link rel="icon" href="images/favicon.png">
     <link rel="stylesheet" href="courriel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="courriel.js"></script>
 </head>
-<body>
+<body onload="chargement()">
     <div id="titre">
         <h1>
             Messagerie(Courriel)
@@ -23,16 +24,16 @@
             </div>
             <div class="liste_element">
                 <ul class="liste_item">
-                    <li id="lien"> <a href="" class="lien" ><i class="fa fa-envelope-o icon" aria-hidden="true"></i>
+                    <li id="lien"> <a href="#" class="lien" onclick="chargement()"><i class="fa fa-envelope-o icon" aria-hidden="true"></i>
                         Boite de reception  </a> </li>
-                    <li> <a href="" class="lien"><i class="fa fa-paper-plane-o icon" aria-hidden="true"></i>
+                    <li> <a href="#" class="lien" onclick="click_Me()"><i class="fa fa-paper-plane-o icon" aria-hidden="true"></i>
                         Messages envoyés </a> </li>
                 </ul>
             </div>
             <div class="list_contacts">
                 <h3 class="titre_contact">Contacts</h3>
                 <ul class="liste_item">
-                        <li id="lien"> <a href="" class="lien" ><i class="fa fa-address-book-o icon" aria-hidden="true"></i>
+                        <li id="lien"> <a href="#" class="lien" onclick="click_Lc()" ><i class="fa fa-address-book-o icon" aria-hidden="true"></i>
                             Liste des Contacts  </a> </li>
                         <li> <a href="" class="lien"><i class="fa fa-plus-square-o fa-lg icon" aria-hidden="true"></i>
                             Nouveau Contact </a> </li>
@@ -46,9 +47,51 @@
                     <button><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
                 <div class="liste_contact">
-                    <div class="container">
+                    <div class="container" id="liste_contact">
                         <div class="contact">
-                            <a href="" class="lien" id="liste_contact">
+                            <a href="" class="lien" >
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <div>
+                                
+                            <h4>Nom du contact</h4>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="contact">
+                            <a href="" class="lien" >
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <div>
+                                
+                            <h4>Nom du contact</h4>
+                            </div>
+                        </a>
+                        </div>
+                    </div>
+                    <div class="container" id="liste_me">
+                        <div class="contact">
+                            <a href="" class="lien" >
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <div>
+                                
+                            <h4>Nom du contact</h4>
+                            </div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
+                        </a>
+                        </div>
+                        <div class="contact">
+                            <a href="" class="lien" id="">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <div>
+                                
+                            <h4>Nom du contact</h4>
+                            </div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
+                        </a>
+                        </div>
+                    </div>
+                    <div class="container" id="liste_mr">
+                        <div class="contact">
+                            <a href="" class="lien" id="liste_mr">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div>
                                 
@@ -59,7 +102,7 @@
                         </a>
                         </div>
                         <div class="contact">
-                            <a href="" class="lien" id="liste_contact">
+                            <a href="" class="lien" id="">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div>
                                 
@@ -79,5 +122,6 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
         </div>
     </div>
+    <script src="courriel.js"></script>
 </body>
 </html>
