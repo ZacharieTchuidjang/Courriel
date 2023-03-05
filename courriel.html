@@ -19,7 +19,7 @@
     <div id="application">
         <div id="menu">
             <div class="boutton_compose">
-                <button value="Nouveau" class="boutton_compo"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <button value="Nouveau" class="boutton_compo" onclick="appearNewMessage()"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     <span> Nouveau Message</span></button>
             </div>
             <div class="liste_element">
@@ -35,7 +35,7 @@
                 <ul class="liste_item">
                         <li id="lien"> <a href="#" class="lien" onclick="click_Lc()" ><i class="fa fa-address-book-o icon" aria-hidden="true"></i>
                             Liste des Contacts  </a> </li>
-                        <li> <a href="" class="lien"><i class="fa fa-plus-square-o fa-lg icon" aria-hidden="true"></i>
+                        <li> <a href="#" class="lien" onclick="click_Lc()"><i class="fa fa-plus-square-o fa-lg icon" aria-hidden="true"></i>
                             Nouveau Contact </a> </li>
                 </ul>
             </div>
@@ -43,74 +43,69 @@
         <div id="liste">
             <div>
                 <div class="recherche">
-                    <input type="text" class="recherche" placeholder="Recherche">
-                    <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <input type="text" id="recherche" placeholder="Recherche">
+                    <button onclick="rechercher()"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
                 <div class="liste_contact">
                     <div class="container" id="liste_contact">
                         <div class="contact">
                             <a href="" class="lien" >
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <div>
-                                
-                            <h4>Nom du contact</h4>
-                            </div>
+                            <i class="fa fa-user" aria-hidden="true"></i>  
+                            <p> Nom du contact </p>
                             </a>
                         </div>
                         <div class="contact">
                             <a href="" class="lien" >
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <div>
                                 
-                            <h4>Nom du contact</h4>
-                            </div>
+                            <p> Nom du contact </p>
                         </a>
                         </div>
                     </div>
                     <div class="container" id="liste_me">
                         <div class="contact">
-                            <a href="" class="lien" >
+                            <a href="#" class="lien" id="mess1" onclick="clickDiv(id)">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div>
                                 
                             <h4>Nom du contact</h4>
                             </div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
+                            <p>Lorem Salut mon ami, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
                         </a>
                         </div>
                         <div class="contact">
-                            <a href="" class="lien" id="">
+                            <a href="#" class="lien" id="mess" onclick="clickDiv(id)">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div>
                                 
                             <h4>Nom du contact</h4>
                             </div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
+                            <p>Lorem Mon frere ci   , sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
                         </a>
                         </div>
                     </div>
                     <div class="container" id="liste_mr">
                         <div class="contact">
-                            <a href="" class="lien" id="liste_mr">
+                            <a href="#" class="lien" id="message1" onclick="clickDiv(id)">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div>
                                 
-                            <h4>Nom du contact</h4>
+                            <h4>Zacharie Jonas</h4>
                             <h6>Sujet du message</h6>
                             </div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
+                            <p>Lorem ipsum dolor Salut  , sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
                         </a>
                         </div>
                         <div class="contact">
-                            <a href="" class="lien" id="">
+                            <a href="#" class="lien" id="message2" onclick="clickDiv(id)">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <div>
                                 
-                            <h4>Nom du contact</h4>
+                            <h4>Duplex Junior</h4>
                             <h6>Sujet du message</h6>
                             </div>
                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
-                        </a>
+                            </a>
                         </div>
                     </div>
                     
@@ -119,7 +114,43 @@
             
         </div>
         <div id="zone_text">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>
+            <div class="Message">
+                <div>
+                    <h1>Nom du contact</h1>
+                </div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam error magni cupiditate magnam. Maiores debitis, iusto atque ad dolore laboriosam illo tempore? Porro, deserunt ullam. At reiciendis quam soluta maxime.</p>    
+            </div>
+            <div class="Ecrire_un_Message">
+                <h1> Nouveau Message</h1>
+                <div>
+                    <form action="">
+                    
+                    
+                    <div>
+                        <label for="name">Entrer votre destinataire: </label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div>
+                        <label for="name">Entrer votre message: </label>
+                    <textarea id="story" name="story" rows="20" cols="100">
+It was a dark and stormy night...
+                    </textarea>
+
+                    <button>Envoyer</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="creer_contact"> 
+                <form action="">
+                    <label for="name">Entrer le nom de votre Contact: </label>
+                    <input type="text" name="name" id="name_contact" required>
+                    <button onclick="newContact()" value="nouveau">creer contact</button>
+                </form>
+            </div>
+            <div class="acceuil">
+
+            </div>
         </div>
     </div>
     <script src="courriel.js"></script>

@@ -81,6 +81,7 @@ body{
 }
 .recherche{
     margin: 10px 0 0 10px;
+    display: flex;
 }
 .contact{
     background-color: white;
@@ -100,4 +101,8 @@ body{
     margin-top: 10px;
     overflow: auto;
     max-height: 550px;
+}
+
+#zone_text{
+    padding: 5%;
 }
