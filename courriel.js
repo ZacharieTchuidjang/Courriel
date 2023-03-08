@@ -116,11 +116,37 @@ function newContact(){
     paragraphe.innerHTML = nomContact;
     lien.appendChild(paragraphe);
     document.getElementById("liste_contact").appendChild(div_contact);
-    console.log(div_contact.innerHTML);
     document.getElementById("name_contact").value = "";
 }
 
 function newMessage(){
+    nom_dest = document.getElementById("name_dest").value;
+    story = document.getElementById("story").value;
+    div_contact = document.createElement("div");
+    div_contact.setAttribute("class", "contact");
+    lien = document.createElement("a");
+    lien.setAttribute("href", "#");
+    lien.setAttribute("class", "lien");
+    lien.setAttribute("onclick", "clickDiv(id)");
+    icone = document.createElement("i");
+    icone.setAttribute("class", "fa fa-user");
+    icone.setAttribute("aria-hidden", "true");
+    lien.appendChild(icone);
+    sous_div = document.createElement("div");
+    titre = document.createElement("h4");
+    titre.innerHTML = nom_dest;
+    sous_div.appendChild(titre);
+    lien.appendChild(sous_div);
+    div_contact.appendChild(lien);
+    paragraphe = document.createElement("p");
+    paragraphe.innerHTML = story;
+    lien.appendChild(paragraphe);
+    document.getElementById("liste_me").appendChild(div_contact);
+    console.log(div_contact)
+    document.getElementById("name_dest").value = "";
+
+
+    return false;
 
 }
 
@@ -149,6 +175,4 @@ function addNewLines(str) {
 
     return finalString;
 }
-
-
 
