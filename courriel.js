@@ -6,9 +6,65 @@ var div_list_message = document.querySelector(".Message");
 var div_form_newMessage = document.querySelector(".Ecrire_un_Message");
 var div_form_newContact = document.querySelector(".creer_contact");
 
+var contacts = JSON.parse(localStorage.getItem("contacts"));
+var messages = JSON.parse(localStorage.getItem("messages"));
+
+if (contacts === null){
+    localStorage.setItem("contacts", JSON.stringify([]));
+}
+
+if(messages === null){
+
+    localStorage.setItem("messages", JSON.stringify([]));
+}
+
 function chargement(){
     setManyDisplayNOne([liste_contact, message_envoye, div_form_newMessage, div_form_newContact]);
     setManyDisplayBlock([message_recu, div_list_message])
+    setManyDisplayBlock(message_recu.children)
+
+    // chargement des contacts
+    for(var i = 0; i < contacts.length; i++){
+        div_contact = document.createElement("div");
+        div_contact.setAttribute("class", "contact");
+        lien = document.createElement("a");
+        lien.setAttribute("href", "#");
+        lien.setAttribute("class", "lien");
+        div_contact.appendChild(lien);
+        icone = document.createElement("i");
+        icone.setAttribute("class", "fa fa-user");
+        icone.setAttribute("aria-hidden", "true");
+        lien.appendChild(icone);
+        paragraphe = document.createElement("p");
+        paragraphe.innerHTML = contacts[i].nom;
+        lien.appendChild(paragraphe);
+        document.getElementById("liste_contact").appendChild(div_contact);
+    }
+
+    // chargement des messages
+
+    for(var i = 0; i < messages.length; i++){
+        div_contact = document.createElement("div");
+        div_contact.setAttribute("class", "contact");
+        lien = document.createElement("a");
+        lien.setAttribute("href", "#");
+        lien.setAttribute("class", "lien");
+        lien.setAttribute("onclick", "clickDiv(id)");
+        icone = document.createElement("i");
+        icone.setAttribute("class", "fa fa-user");
+        icone.setAttribute("aria-hidden", "true");
+        lien.appendChild(icone);
+        sous_div = document.createElement("div");
+        titre = document.createElement("h4");
+        titre.innerHTML = messages[i].nom;
+        sous_div.appendChild(titre);
+        lien.appendChild(sous_div);
+        div_contact.appendChild(lien);
+        paragraphe = document.createElement("p");
+        paragraphe.innerHTML = messages[i].text;
+        lien.appendChild(paragraphe);
+        document.getElementById("liste_me").appendChild(div_contact);
+    }
     
 }
 
@@ -40,11 +96,13 @@ function setManyDisplayNOne(tabOfElement){
 function click_Me(){
     setManyDisplayNOne([message_recu, liste_contact, div_form_newMessage, div_form_newContact]);
     setManyDisplayBlock([message_envoye, div_list_message]);
+    setManyDisplayBlock(message_envoye.children)
 }
 
 function click_Lc(){
     setManyDisplayNOne([message_envoye, message_recu, div_form_newMessage, div_list_message]);
     setManyDisplayBlock([liste_contact, div_form_newContact]);
+    setManyDisplayBlock(liste_contact.children)
 }
 
 function rechercher(){
@@ -77,6 +135,7 @@ function rechercher(){
 
 function newContact(){
     nomContact = document.getElementById("name_contact").value;
+    
     //generer la clé publique
     crypto.subtle.generateKey(
         {
@@ -92,12 +151,17 @@ function newContact(){
            to export it from the keypair object in pkcs8
         */
         window.crypto.subtle.exportKey(
-            "pkcs8",
+            "spki",
             keyPair.publicKey
         ).then(function(exportedPublicKey) {
             // converting exported private key to PEM format
             var pem = addNewLines(arrayBufferToBase64(exportedPublicKey));
             console.log(pem);
+            contacts.push({"nom": nomContact, "publicKey": pem});
+            console.log(contacts);
+            localStorage.setItem("contacts", JSON.stringify(contacts));
+            exemple = JSON.parse(localStorage.getItem("contacts"));
+            console.log(exemple)
         }).catch(function(err) {
             console.log(err);
         }); 
@@ -117,6 +181,8 @@ function newContact(){
     lien.appendChild(paragraphe);
     document.getElementById("liste_contact").appendChild(div_contact);
     document.getElementById("name_contact").value = "";
+
+    return false;
 }
 
 function newMessage(){
@@ -142,8 +208,13 @@ function newMessage(){
     paragraphe.innerHTML = story;
     lien.appendChild(paragraphe);
     document.getElementById("liste_me").appendChild(div_contact);
-    console.log(div_contact)
     document.getElementById("name_dest").value = "";
+
+    messages.push({"nom": nom_dest, "text": story});
+    console.log(messages);
+    localStorage.setItem("messages", JSON.stringify(messages));
+    exemple = JSON.parse(localStorage.getItem("messages"));
+    console.log(exemple)
 
 
     return false;
@@ -157,6 +228,7 @@ function clickDiv(id_DIv){
 
 function arrayBufferToBase64(arrayBuffer) {
     var byteArray = new Uint8Array(arrayBuffer);
+    console.log(byteArray);
     var byteString = '';
     for(var i=0; i < byteArray.byteLength; i++) {
         byteString += String.fromCharCode(byteArray[i]);
@@ -174,5 +246,9 @@ function addNewLines(str) {
     }
 
     return finalString;
+}
+
+function toString(objet){
+    return "nom : " + objet.nom + "publicKey :" + objet.publicKey;
 }
 
