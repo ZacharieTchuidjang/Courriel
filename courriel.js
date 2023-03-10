@@ -43,10 +43,16 @@ function chargement(){
         icone1.setAttribute("aria-hidden", "true");
         icone1.setAttribute("id","trash" + i);
         icone1.setAttribute("onclick", "deleteC(id)");
+        icone2 = document.createElement("i");
+        icone2.setAttribute("class", "fa fa-pencil");
+        icone2.setAttribute("aria-hidden", "true");
+        icone2.setAttribute("id","modifier" + i);
+        icone2.setAttribute("onclick", "modifier(id)");
         paragraphe = document.createElement("p");
         paragraphe.innerHTML = contacts[i].nom;
         lien.appendChild(paragraphe);
         div_contact.appendChild(icone1);
+        div_contact.appendChild(icone2);
         document.getElementById("liste_contact").appendChild(div_contact);
     }
 
@@ -200,7 +206,13 @@ function newContact(){
     icone1.setAttribute("aria-hidden", "true");
     icone1.setAttribute("id","trash" + contacts.length);
     icone1.setAttribute("onclick", "deleteC(id)");
+    icone2 = document.createElement("i");
+    icone2.setAttribute("class", "fa fa-pencil");
+    icone2.setAttribute("aria-hidden", "true");
+    icone2.setAttribute("id","modifier" + contacts.length);
+    icone2.setAttribute("onclick", "modifier(id)");
     div_contact.appendChild(icone1);
+    div_contact.appendChild(icone2);
     document.getElementById("liste_contact").appendChild(div_contact);
     document.getElementById("name_contact").value = "";
 
@@ -293,6 +305,46 @@ function deleteC(id){
 }
 
 function modifier(id){
-    nouveau = prompt("Voulez vous changer le nom?")
+    var nomC = document.getElementById(id).parentElement.querySelector("p").textContent;
+    reponse = prompt("Voulez vous changer le nom? oui/non")
+    if(reponse.localeCompare("oui") === 0){
+        nouveauN = prompt("Entrer le nouveau nom", nomC);
+        if(confirm("Voulez-vous aussi changer sa clé publique?")){
+            crypto.subtle.generateKey(
+                {
+                    name: "RSA-OAEP",
+                    modulusLength: 2048, // can be 1024, 2048 or 4096
+                    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+                    hash: {name: "SHA-256"} // or SHA-512
+                },
+                true,
+                ["encrypt", "decrypt"]
+            ).then( function(keyPair) {
+                /* now when the key pair is generated we are going
+                   to export it from the keypair object in pkcs8
+                */
+                window.crypto.subtle.exportKey(
+                    "spki",
+                    keyPair.publicKey
+                ).then(function(exportedPublicKey) {
+                    // converting exported private key to PEM format
+                    var pem = addNewLines(arrayBufferToBase64(exportedPublicKey));
+                    console.log(contacts);
+                    var index = contacts.findIndex(element => element.nom.localeCompare(nomC) === 0);
+                    contacts[index].nom = nouveauN;
+                    contacts[index].publicKey = pem;
+                    document.getElementById(id).parentElement.querySelector("p").textContent = nouveauN;
+                    localStorage.setItem("contacts", JSON.stringify(contacts));
+                }).catch(function(err) {
+                    console.log(err);
+                }); 
+            });
+        }else{
+            var index = contacts.findIndex(element => element.nom.localeCompare(nomC) === 0);
+            contacts[index].nom = nouveauN;
+            document.getElementById(id).parentElement.querySelector("p").textContent = nouveauN;
+            localStorage.setItem("contacts", JSON.stringify(contacts));
+        }
+    }
 }
 
