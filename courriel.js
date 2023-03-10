@@ -27,17 +27,26 @@ function chargement(){
     for(var i = 0; i < contacts.length; i++){
         div_contact = document.createElement("div");
         div_contact.setAttribute("class", "contact");
+        div_contact.setAttribute("id", "contact_" + i);
         lien = document.createElement("a");
         lien.setAttribute("href", "#");
         lien.setAttribute("class", "lien");
+        lien.setAttribute("id", "contact" + i);
+        lien.setAttribute("onclick", "clickDivC(id)");
         div_contact.appendChild(lien);
         icone = document.createElement("i");
         icone.setAttribute("class", "fa fa-user");
         icone.setAttribute("aria-hidden", "true");
         lien.appendChild(icone);
+        icone1 = document.createElement("i");
+        icone1.setAttribute("class", "fa fa-trash-o");
+        icone1.setAttribute("aria-hidden", "true");
+        icone1.setAttribute("id","trash" + i);
+        icone1.setAttribute("onclick", "deleteC(id)");
         paragraphe = document.createElement("p");
         paragraphe.innerHTML = contacts[i].nom;
         lien.appendChild(paragraphe);
+        div_contact.appendChild(icone1);
         document.getElementById("liste_contact").appendChild(div_contact);
     }
 
@@ -49,6 +58,7 @@ function chargement(){
         lien = document.createElement("a");
         lien.setAttribute("href", "#");
         lien.setAttribute("class", "lien");
+        lien.setAttribute("id", "message" + i);
         lien.setAttribute("onclick", "clickDiv(id)");
         icone = document.createElement("i");
         icone.setAttribute("class", "fa fa-user");
@@ -166,11 +176,17 @@ function newContact(){
             console.log(err);
         }); 
     });
+    
+
+
     div_contact = document.createElement("div");
     div_contact.setAttribute("class", "contact");
+    div_contact.setAttribute("id", "contact_" + contacts.length);
     lien = document.createElement("a");
     lien.setAttribute("href", "#");
     lien.setAttribute("class", "lien");
+    lien.setAttribute("id", "contact" + contacts.length);
+    lien.setAttribute("onclick", "clickDivC(id)");
     div_contact.appendChild(lien);
     icone = document.createElement("i");
     icone.setAttribute("class", "fa fa-user");
@@ -179,6 +195,12 @@ function newContact(){
     paragraphe = document.createElement("p");
     paragraphe.innerHTML = nomContact;
     lien.appendChild(paragraphe);
+    icone1 = document.createElement("i");
+    icone1.setAttribute("class", "fa fa-trash-o");
+    icone1.setAttribute("aria-hidden", "true");
+    icone1.setAttribute("id","trash" + contacts.length);
+    icone1.setAttribute("onclick", "deleteC(id)");
+    div_contact.appendChild(icone1);
     document.getElementById("liste_contact").appendChild(div_contact);
     document.getElementById("name_contact").value = "";
 
@@ -193,6 +215,7 @@ function newMessage(){
     lien = document.createElement("a");
     lien.setAttribute("href", "#");
     lien.setAttribute("class", "lien");
+    lien.setAttribute("id", "message" + messages.length);
     lien.setAttribute("onclick", "clickDiv(id)");
     icone = document.createElement("i");
     icone.setAttribute("class", "fa fa-user");
@@ -226,6 +249,13 @@ function clickDiv(id_DIv){
     document.querySelector(".Message p").innerHTML = document.querySelector("#" + id_DIv + " p").innerHTML;
 }
 
+function clickDivC(id_DIv){
+    setDisplayblock(div_list_message)
+    setManyDisplayNOne([div_form_newMessage, div_form_newContact])
+    document.querySelector(".Message h1").innerHTML = document.querySelector("#" + id_DIv + " p").innerHTML;
+    document.querySelector(".Message p").innerHTML = "";
+}
+
 function arrayBufferToBase64(arrayBuffer) {
     var byteArray = new Uint8Array(arrayBuffer);
     console.log(byteArray);
@@ -250,5 +280,19 @@ function addNewLines(str) {
 
 function toString(objet){
     return "nom : " + objet.nom + "publicKey :" + objet.publicKey;
+}
+
+function deleteC(id){
+    var nomC = document.getElementById(id).parentElement.querySelector("p").textContent;
+
+    var index = contacts.findIndex(element => element.nom.localeCompare(nomC) === 0);
+    contacts.splice(index, 1);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    console.log(contacts);
+    setDisplaynone(document.getElementById(id).parentElement);
+}
+
+function modifier(id){
+    nouveau = prompt("Voulez vous changer le nom?")
 }
 

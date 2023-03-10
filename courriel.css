@@ -97,6 +97,10 @@ body{
     padding-top: 7px;
 }
 
+.contact{
+    display: flex;
+}
+
 .container{
     margin-top: 10px;
     overflow: auto;

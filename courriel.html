@@ -48,18 +48,20 @@
                 </div>
                 <div class="liste_contact">
                     <div class="container" id="liste_contact">
-                        <div class="contact">
-                            <a href="" class="lien" >
+                        <div class="contact" id="contact1">
+                            <a href="#" class="lien" id="contact_1" onclick="clickDivC(id)">
                             <i class="fa fa-user" aria-hidden="true"></i>  
-                            <p> Nom du contact </p>
+                            <p> Nom du contact 1</p>
                             </a>
+                            <i class="fa fa-trash-o" aria-hidden="true" id="trash_1" onclick="deleteC(id)"></i>
                         </div>
-                        <div class="contact">
-                            <a href="" class="lien" >
+                        <div class="contact" id="contact2">
+                            <a href="#" class="lien" id="contact_2"onclick="clickDivC(id)">
                             <i class="fa fa-user" aria-hidden="true"></i>
                                 
                             <p> Nom du contact </p>
                         </a>
+                        <i class="fa fa-trash-o" id="trash_2" aria-hidden="true" onclick="deleteC(id)"></i>
                         </div>
                     </div>
                     <div class="container" id="liste_me">
@@ -133,7 +135,7 @@
                     <div>
                         <label for="name">Entrer votre message: </label>
                     <textarea id="story" name="story" rows="20" cols="100">
-It was a dark and stormy night...
+                        It was a dark and stormy night...
                     </textarea>
                 </div>
                     <button onclick="newMessage()" value="envoyer">Envoyer</button>
