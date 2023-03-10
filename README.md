@@ -10,6 +10,6 @@ La liste des partipants au devoir:
 
 3- Nkondje Nkondje Ekenglo Alex
 
-4- Ymele Duplex Junior
+4- Ymelé Feugue Duplex Junior
 
 5- Tanekeu Somkwe Cedric
