@@ -1,8 +1,8 @@
 # Courriel
-Devoir Technologie Internet
+Projet Technologie Internet
 
 
-La liste des partipants au devoir:
+La liste des participants au projet:
 
 1- Tchuidjang Zacharie Jonas Emmanuel Marie
 
